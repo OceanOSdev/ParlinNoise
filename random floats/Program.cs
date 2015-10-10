@@ -12,11 +12,11 @@ namespace random_floats
         static void Main(string[] args)
         {
             PerlinNoise p = new PerlinNoise();
-            for (int i = 0; i < 20; i++)
+            for (float i = 0; i < 100; i+=0.1f)
             {
-                float output = p.PerlinNoiseGeneration(p.noise(i, 0.5f), 0.5f, 4, PerlinNoise.InterpolationType.CosineInterp);
+                float output = p.PerlinNoiseGeneration(p.noise((int)(i * 10), 0.5f), 0.5f, 4, PerlinNoise.InterpolationType.CubicInterp);
 
-                Console.WriteLine(output);
+                Console.WriteLine("{0}: {1}", i * 10, output);
             }
 
             Console.ReadKey();

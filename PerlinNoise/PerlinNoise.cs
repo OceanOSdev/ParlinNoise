@@ -58,9 +58,9 @@ namespace Perlin_Noise
 		/// <param name="seed">The seed to feed the generator</param>
 		/// <param name="octave">Determines primes to use in</param>
 		/// <returns></returns>
-		public float noise(int seed, float octave)
+		public float noise(float seed, float octave)
 		{
-			int n = (seed << 13) ^ seed; // bitwise shift to the left by 13 places then rased to n
+			int n = (((int)seed) << 13) ^ (int)seed; // bitwise shift to the left by 13 places then rased to n
 			//& performs a bitwise multiplication (i.e. 0*0 =0, 1*0=0, 1*1=1
 			//it makes this multiplication with the largerst possible int
 			//i.e. +111111.....1111
@@ -130,9 +130,9 @@ namespace Perlin_Noise
 		/// </summary>
 		/// <param name="x">Point on the x-axis</param>
 		/// <returns>Smoothed out point</returns>
-		public float SmoothNoiseOneDimensional(int x)
+		public float SmoothNoiseOneDimensional(float x, float octave)
 		{
-			return (noise(x) / 2) + (noise(x - 1) / 4) + (noise(x + 1) / 4);
+			return (noise(x, octave) / 2) + (noise(x - 1, octave) / 4) + (noise(x + 1, octave) / 4);
 		}
 
 		/// <summary>
@@ -141,13 +141,13 @@ namespace Perlin_Noise
 		/// <param name="noise">Any value from 0.0 to 1.0</param>
 		/// <param name="interpolationType">The type of interpolation to be performed</param>
 		/// <returns>The interpolated noise</returns>
-		private float InterpolatedNoise(float noise, InterpolationType interpolationType)
+		private float InterpolatedNoise(float noise, float octave, InterpolationType interpolationType)
 		{
 			int intNoise = (int)noise;
 			float fractionalNoise = noise - intNoise;
 
-			var LowerBound = SmoothNoiseOneDimensional(intNoise);
-			var UpperBound = SmoothNoiseOneDimensional(intNoise + 1);
+			var LowerBound = SmoothNoiseOneDimensional(intNoise, octave);
+			var UpperBound = SmoothNoiseOneDimensional(intNoise + 1, octave);
 
 			float flag = 0.0f;
 
@@ -161,7 +161,7 @@ namespace Perlin_Noise
 					break;
 				case InterpolationType.CubicInterp:
 					// I don't know if this will actually do what i want it to (I'm not even sure I know what I want it to do anyways)
-					flag = CubicInterpolate(SmoothNoiseOneDimensional(intNoise - 1), LowerBound, UpperBound, SmoothNoiseOneDimensional(intNoise + 2), fractionalNoise);
+					flag = CubicInterpolate(SmoothNoiseOneDimensional(intNoise - 1, octave), LowerBound, UpperBound, SmoothNoiseOneDimensional(intNoise + 2, octave), fractionalNoise);
 					break;
 				default:
 					break;
@@ -182,12 +182,12 @@ namespace Perlin_Noise
 		public float PerlinNoiseGeneration(float noise, float persistence, float octaves, InterpolationType interpolationType)
 		{
 			float total = 0.0f;
-			for (int i = 0; i < octaves - 1; i++)
+			for (int octave = 0; octave < octaves - 1; octave++)
 			{
-				float frequency = (float)Math.Pow(2, i);
-				float amplitude = (float)Math.Pow(persistence, i);
+				float frequency = (float)Math.Pow(2, octave);
+				float amplitude = (float)Math.Pow(persistence, octave);
 
-				total += InterpolatedNoise((noise * frequency), interpolationType) * amplitude;
+				total += InterpolatedNoise((noise * frequency), octave, interpolationType) * amplitude;
 			}
 			return total;
 		}
