@@ -9,3 +9,14 @@ c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\Graph\obj\Rel
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\Graph\obj\Release\Graph.pdb
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\Graph\bin\Release\PerlinNoise.dll
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\Graph\bin\Release\PerlinNoise.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\bin\Release\Graph.exe.config
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.exe
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\bin\Release\Graph.exe
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\bin\Release\Graph.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\bin\Release\PerlinNoise.dll
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\bin\Release\PerlinNoise.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.csprojResolveAssemblyReference.cache
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.Form1.resources
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.Properties.Resources.resources
+C:\Users\Thomas\Source\Repos\ParlinNoise\Graph\obj\Release\Graph.csproj.GenerateResource.Cache

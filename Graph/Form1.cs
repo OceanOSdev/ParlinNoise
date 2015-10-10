@@ -152,7 +152,7 @@ namespace Graph
             area.AxisX.Minimum = 0;
             area.AxisY.Minimum = 0;
             area.AxisY.Maximum = 1;
-            area.AxisX.ScaleView.Zoom(0, 8);
+            area.AxisX.ScaleView.Zoom(0, 16);
             area.AxisY.ScaleView.Zoom(0, 1);
             area.CursorX.AutoScroll = true;
 

@@ -6,3 +6,11 @@ c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\random floats
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\random floats\obj\Release\random floats.csprojResolveAssemblyReference.cache
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\random floats\bin\Release\PerlinNoise.dll
 c:\users\thomas\documents\visual studio 2013\Projects\perlin noise\random floats\bin\Release\PerlinNoise.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\bin\Release\random floats.exe.config
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\bin\Release\random floats.exe
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\bin\Release\random floats.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\bin\Release\PerlinNoise.dll
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\bin\Release\PerlinNoise.pdb
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\obj\Release\random floats.csprojResolveAssemblyReference.cache
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\obj\Release\random floats.exe
+C:\Users\Thomas\Source\Repos\ParlinNoise\random floats\obj\Release\random floats.pdb
