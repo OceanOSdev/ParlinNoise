@@ -11,7 +11,7 @@ using Perlin_Noise;
 using System.Windows.Forms.DataVisualization.Charting;
 namespace Graph
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         Series seriesOne;
         PerlinNoise p = new PerlinNoise();
@@ -19,7 +19,7 @@ namespace Graph
         float persistance = 0.5f;
         PerlinNoise.InterpolationType interpType;
         ChartArea area;
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
 
