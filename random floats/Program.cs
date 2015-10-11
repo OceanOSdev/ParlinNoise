@@ -16,7 +16,7 @@ namespace random_floats
             {
                 float output = p.PerlinNoiseGeneration(p.noise((int)(i * 10), 0.5f), 0.5f, 4, PerlinNoise.InterpolationType.CubicInterp);
 
-                Console.WriteLine("{0}: {1}", i * 10, output);
+                Console.WriteLine("{0}: {1}", (int)(i * 10), output);
             }
 
             Console.ReadKey();

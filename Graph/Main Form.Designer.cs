@@ -40,6 +40,7 @@
             this.comboInterpType = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnApplyAndGraph = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartParlin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,8 @@
             this.chartParlin.Size = new System.Drawing.Size(758, 458);
             this.chartParlin.TabIndex = 0;
             this.chartParlin.Text = "chart1";
+            this.chartParlin.CursorPositionChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.CursorEventArgs>(this.chartParlin_CursorPositionChanged);
+            this.chartParlin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chartParlin_MouseDown);
             // 
             // label1
             // 
@@ -150,11 +153,24 @@
             this.btnApplyAndGraph.UseVisualStyleBackColor = true;
             this.btnApplyAndGraph.Click += new System.EventHandler(this.btnApplyAndGraph_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(13, 566);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(127, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Do what Killian wants";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 595);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnApplyAndGraph);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboInterpType);
@@ -183,6 +199,7 @@
         private System.Windows.Forms.ComboBox comboInterpType;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnApplyAndGraph;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

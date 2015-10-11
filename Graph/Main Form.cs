@@ -17,8 +17,10 @@ namespace Graph
         PerlinNoise p = new PerlinNoise();
         float octaves = 8.0f;
         float persistance = 0.5f;
+        bool doWhatKillianWants = true;     // for the most part
         PerlinNoise.InterpolationType interpType;
         ChartArea area;
+        float breakingPoint = 0.6f;
         public frmMain()
         {
             InitializeComponent();
@@ -32,7 +34,8 @@ namespace Graph
                 IsVisibleInLegend = false,
                 IsXValueIndexed = true,
                 ChartType = SeriesChartType.Spline,
-
+                BorderWidth = 10
+                
             };
 
             this.chartParlin.Series.Add(seriesOne);
@@ -48,6 +51,7 @@ namespace Graph
             for (float i = 0; i < octaves - 1; i+= 0.1f)
             {
                 var val = p.PerlinNoiseGeneration(p.noise((int)(i* 10), octaves), persistance, octaves, PerlinNoise.InterpolationType.CosineInterp);
+                val = doWhatKillianWants ? (float)Math.Floor(val) : val;
                 seriesOne.Points.AddXY(i, val);
             }
 
@@ -108,13 +112,20 @@ namespace Graph
 
         private void btnApplyAndGraph_Click(object sender, EventArgs e)
         {
+
+            UpdateGraph();
+        }
+
+        private void UpdateGraph()
+        {
             seriesOne.Points.Clear();
             float.TryParse(txtOctaves.Text, out octaves);
             float.TryParse(txtPersistence.Text, out persistance);
-            for (float i = 0; i < octaves - 1; i+= 0.1f)
+            for (float i = 0; i < octaves - 1; i += 0.1f)
             {
-                var val = p.PerlinNoiseGeneration(p.noise((int)(i*10), octaves), persistance, octaves, interpType);
+                var val = p.PerlinNoiseGeneration(p.noise((int)(i * 10), octaves), persistance, octaves, interpType);
                 p.SmoothNoiseOneDimensional(i, i * 10);
+                val = doWhatKillianWants ? ((val > breakingPoint) ? 0.3f + breakingPoint : breakingPoint - 0.3f) : val;
                 seriesOne.Points.AddXY(i, val);
             }
 
@@ -163,9 +174,69 @@ namespace Graph
             area.AxisX.MinorTickMark.Interval = 0.1;
 
             //area.AxisX.
-
+            area.BorderWidth = 50;
             area.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
-            area.AxisX.ScaleView.SmallScrollSize = 8;
+            area.AxisX.ScaleView.SmallScrollSize = 16;
+
+            area.CursorX.IsUserEnabled = true;
+            area.CursorX.IsUserSelectionEnabled = true;
+
+            chartParlin.ChartAreas[0].CursorX.IsUserEnabled = false;
+
+           
+            // set selection color to transparent so that range selection is not drawn
+            area.CursorX.SelectionColor = System.Drawing.Color.Transparent;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            doWhatKillianWants = checkBox1.Checked;
+            seriesOne.ChartType = doWhatKillianWants ? SeriesChartType.StepLine : SeriesChartType.Spline;
+        }
+
+        private void chartParlin_MouseDown(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;
+            var results = chartParlin.HitTest(pos.X, pos.Y, false,
+                                     ChartElementType.PlottingArea);
+            foreach (var result in results)
+            {
+                if (result.ChartElementType == ChartElementType.PlottingArea)
+                {
+                    var xVal = result.ChartArea.AxisX.PixelPositionToValue(pos.X);
+                    var yVal = result.ChartArea.AxisY.PixelPositionToValue(pos.Y);
+
+                    breakingPoint = (float)(Math.Round(yVal, 2, MidpointRounding.AwayFromZero));
+                    //MessageBox.Show(breakingPoint.ToString());
+                }
+            }
+            UpdateGraph();
+        }
+
+        private Point sub(Point a, Point b)
+        {
+            Point flag = new Point(0, 0);
+            flag.X = a.X - b.X;
+            flag.Y = a.Y - b.Y;
+            return flag;
+        }
+
+        private void chartParlin_CursorPositionChanged(object sender, CursorEventArgs e)
+        {
+            try
+            {
+                //DataPoint pt = chartParlin.Series[0].Points[(int)Math.Max(e.ChartArea.CursorX.Position - 1, 0)];
+                
+                
+                // do what is need with the data point
+                //pt.MarkerStyle = MarkerStyle.Square;
+                //
+                
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
         }
     }
 }
