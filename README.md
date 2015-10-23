@@ -1,1 +1,1 @@
-ParlinNoise
+PerlinNoise
